@@ -1,0 +1,124 @@
+{
+  "name": "@holipoly/auth-sdk",
+  "version": "1.0.1",
+  "description": "Auth SDK for Holipoly",
+  "sideEffects": false,
+  "types": "index.d.ts",
+  "main": "index.js",
+  "module": "index.mjs",
+  "scripts": {
+    "prepublishOnly": "pnpm build",
+    "prebuild": "pnpm clean",
+    "watch": "tsup-node src/* --format esm,cjs --dts --watch",
+    "build": "tsup-node src/* --format esm,cjs --dts && clear-package-json package.json -o dist/package.json --fields publishConfig && pnpm copy-files",
+    "clean": "rm -rf ./dist/*",
+    "test": "vitest",
+    "lint": "prettier --write . && eslint --fix src ",
+    "lint:ci": "prettier --check . && eslint src",
+    "release": "cd dist && ../node_modules/.bin/release-it",
+    "copy-files": "cp README.md dist/README.md"
+  },
+  "keywords": [],
+  "author": "Holipoly Team",
+  "license": "BSD-3-Clause",
+  "dependencies": {
+    "@graphql-typed-document-node/core": "^3.2.0",
+    "cookie": "^0.6.0",
+    "graphql": "^16.8.1"
+  },
+  "peerDependencies": {
+    "next": "^13.4.4 || ^14.0.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "urql": "^4.0.3"
+  },
+  "peerDependenciesMeta": {
+    "react": {
+      "optional": true
+    },
+    "react-dom": {
+      "optional": true
+    },
+    "urql": {
+      "optional": true
+    },
+    "next": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@graphql-typed-document-node/core": "^3.2.0",
+    "@types/cookie": "^0.5.4",
+    "@types/debug": "^4.1.12",
+    "@types/node": "^20.9.1",
+    "@types/node-fetch": "^2.6.9",
+    "@types/react": "^18.2.37",
+    "@types/react-dom": "^18.2.15",
+    "@types/uuid": "^9.0.7",
+    "@typescript-eslint/eslint-plugin": "^6.11.0",
+    "@typescript-eslint/parser": "^6.11.0",
+    "@vitejs/plugin-react": "^4.2.0",
+    "clean-publish": "^4.2.0",
+    "eslint": "^8.53.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-import-resolver-typescript": "^3.6.1",
+    "eslint-plugin-import": "^2.29.0",
+    "eslint-plugin-jsx-a11y": "^6.8.0",
+    "eslint-plugin-react": "^7.33.2",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-simple-import-sort": "^10.0.0",
+    "jsdom": "^22.1.0",
+    "prettier": "^3.1.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "release-it": "^17.0.0",
+    "tsup": "^7.3.0",
+    "typescript": "^5.2.2",
+    "urql": "^4.0.6",
+    "vite": "^5.0.0",
+    "vitest": "^0.34.6",
+    "vitest-fetch-mock": "^0.2.2"
+  },
+  "lint-staged": {
+    "*.{js,ts,tsx}": "eslint --cache --fix",
+    "*.{js,ts,tsx,css,md,json}": "prettier --write"
+  },
+  "exports": {
+    "./package.json": "./package.json",
+    "./react": {
+      "types": "./react/index.d.ts",
+      "import": "./react/index.mjs",
+      "require": "./react/index.js"
+    },
+    "./next": {
+      "types": "./next/index.d.ts",
+      "import": "./next/index.mjs",
+      "require": "./next/index.js"
+    },
+    "./next/server": {
+      "types": "./next/server.d.ts",
+      "import": "./next/server.mjs",
+      "require": "./next/server.js"
+    },
+    ".": {
+      "types": "./index.d.ts",
+      "import": "./index.mjs",
+      "require": "./index.js"
+    }
+  },
+  "publishConfig": {
+    "access": "public",
+    "directory": "dist"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/holipoly/auth-sdk.git"
+  },
+  "bugs": {
+    "url": "https://github.com/holipoly/auth-sdk/issues"
+  },
+  "homepage": "https://github.com/holipoly/auth-sdk#readme",
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
